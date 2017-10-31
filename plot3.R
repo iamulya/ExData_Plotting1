@@ -1,6 +1,8 @@
 library(sqldf)
 library(lubridate)
-hpc <- read.csv2.sql("c4/household_power_consumption.txt", 
+download.file("https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip", destfile="data.zip", method="curl")
+unzip ("data.zip", exdir = "./")
+hpc <- read.csv2.sql("household_power_consumption.txt", 
                      sql = "select * from file where Date == '1/2/2007' or Date == '2/2/2007'", eol = "\n")
 
 hpc$Date <- as.Date(hpc$Date, format="%d/%m/%Y")
